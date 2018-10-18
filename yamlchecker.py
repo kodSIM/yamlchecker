@@ -13,7 +13,8 @@ def yaml_checker(path):
     """Read all yaml files in the directory and verify structure.
 
     :param str path: Path to test cases.
-    :return: None.
+    :return: Number of errors.
+    :rtype: int
     """
     file_list = os.listdir(path)
     file_list = filter(lambda x: x.endswith('.yaml'), file_list)
@@ -42,7 +43,7 @@ def yaml_checker(path):
     else:
         print('='*30)
         print('Test cases are OK')
-    sys.exit(error_count)
+    return error_count
 
 
 def check_section(test_case, section, step=0, is_markdown=False):
@@ -73,4 +74,4 @@ def check_section(test_case, section, step=0, is_markdown=False):
 
 
 if __name__ == '__main__':
-    yaml_checker()
+    sys.exit(yaml_checker())
