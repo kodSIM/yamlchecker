@@ -5,6 +5,8 @@ import sys
 import click
 import markdown
 import yaml
+from yamllint.config import YamlLintConfig
+import yamllint.linter as linter
 
 
 @click.command()
@@ -24,6 +26,16 @@ def yaml_checker(path):
         full_path = '{}\\{}'.format(path, file_name)
         with open(full_path) as file:
             text = file.read()
+        conf = YamlLintConfig('document-start:\n'
+                              '  present: false\n'
+                              'rules:\n'
+                              '  line-length:\n'
+                              '    max: 250\n'
+                              '    allow-non-breakable-words: false\n'
+                              '    allow-non-breakable-inline-mappings: true\n')
+        for err in linter.run(text, conf):
+            print(err)
+            error_count += 1
         try:
             test_case = yaml.load(text)
         except Exception:
@@ -43,7 +55,7 @@ def yaml_checker(path):
     else:
         print('='*30)
         print('Test cases are OK')
-    return error_count
+    sys.exit(error_count)
 
 
 def check_section(test_case, section, step=0, is_markdown=False):
@@ -74,4 +86,4 @@ def check_section(test_case, section, step=0, is_markdown=False):
 
 
 if __name__ == '__main__':
-    sys.exit(yaml_checker())
+    yaml_checker()
