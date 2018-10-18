@@ -69,8 +69,7 @@ def check_section(test_case, section, step=0, is_markdown=False):
     if is_markdown and not markdown.markdown(text):
         print(msg_parse.format(section, step))
         return 1
-    else:
-        return 0
+    return 0
 
 
 if __name__ == '__main__':
