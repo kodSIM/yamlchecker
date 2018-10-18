@@ -1,3 +1,4 @@
 Click==7.0
 Markdown==2.6.11
 PyYAML==3.13
+yamllint==1.12.1
