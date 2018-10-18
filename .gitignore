@@ -1,0 +1,5 @@
+.idea
+*.tmp
+*.bak
+*.pyc
+.gitgnore
