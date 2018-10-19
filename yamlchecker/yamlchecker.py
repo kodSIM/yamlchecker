@@ -1,5 +1,6 @@
 """Module for verify test cases YAML-files."""
 import os
+import os.path
 import sys
 
 import click
@@ -23,12 +24,18 @@ def yaml_checker(path):
     :return: Number of errors.
     :rtype: int
     """
-    file_list = os.listdir(path)
-    file_list = filter(lambda x: x.endswith('.yaml') or x.endswith('.yml'), file_list)
+    if os.path.isdir(path):
+        file_list = os.listdir(path)
+        file_list = filter(lambda x: x.endswith('.yaml') or x.endswith('.yml'), file_list)
+    else:
+        file_list = [path]
     error_count = 0
     for file_name in file_list:
         print('=== Parsing {} ==='.format(file_name))
-        full_path = '{}\\{}'.format(path, file_name)
+        if os.path.isdir(path):
+            full_path = '{}\\{}'.format(path, file_name)
+        else:
+            full_path = file_name
         with open(full_path) as file:
             text = file.read()
         conf = YamlLintConfig('document-start:\n'
