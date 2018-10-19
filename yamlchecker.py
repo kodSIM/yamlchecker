@@ -11,6 +11,11 @@ import yamllint.linter as linter
 
 @click.command()
 @click.argument('path', type=click.Path(exists=True))
+def cli(path):
+    """Command-line interface for YAMLchecker."""
+    sys.exit(yaml_checker(path))
+
+
 def yaml_checker(path):
     """Read all yaml files in the directory and verify structure.
 
@@ -19,7 +24,7 @@ def yaml_checker(path):
     :rtype: int
     """
     file_list = os.listdir(path)
-    file_list = filter(lambda x: x.endswith('.yaml'), file_list)
+    file_list = filter(lambda x: x.endswith('.yaml') or x.endswith('.yml'), file_list)
     error_count = 0
     for file_name in file_list:
         print('=== Parsing {} ==='.format(file_name))
@@ -55,7 +60,7 @@ def yaml_checker(path):
     else:
         print('='*30)
         print('Test cases are OK')
-    sys.exit(error_count)
+    return error_count
 
 
 def check_section(test_case, section, step=0, is_markdown=False):
@@ -86,4 +91,4 @@ def check_section(test_case, section, step=0, is_markdown=False):
 
 
 if __name__ == '__main__':
-    yaml_checker()
+    cli()
