@@ -1,5 +1,8 @@
 .idea
+venv
 *.tmp
 *.bak
 *.pyc
-.gitgnore
+.gitignore
+*.egg-info
+dist
