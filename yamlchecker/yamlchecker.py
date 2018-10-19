@@ -56,9 +56,7 @@ def yaml_checker(path):
         else:
             error_count += check_section(test_case, 'Description', is_markdown=True)
             error_count += check_section(test_case, 'Requirements')
-            step_count = 0
-            for step in test_case['Steps']:
-                step_count += 1
+            for step_count, step in enumerate(test_case['Steps'], 1):
                 error_count += check_section(step, 'Description', step_count, is_markdown=True)
                 error_count += check_section(step, 'Expected', step_count, is_markdown=True)
     if error_count:
