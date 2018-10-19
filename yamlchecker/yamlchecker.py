@@ -33,7 +33,7 @@ def yaml_checker(path):
     for file_name in file_list:
         print('=== Parsing {} ==='.format(file_name))
         if os.path.isdir(path):
-            full_path = '{}\\{}'.format(path, file_name)
+            full_path = os.path.join(path, file_name)
         else:
             full_path = file_name
         with open(full_path) as file:
