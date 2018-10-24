@@ -25,7 +25,7 @@ def yaml_checker(path):
     """
     if os.path.isdir(path):
         file_list = os.listdir(path)
-        file_list = filter(lambda x: x.endswith(('.yaml', '.yml')), file_list)
+        file_list = [x for x in file_list if x.endswith(('.yaml', '.yml'))]
     else:
         file_list = [path]
     error_count = 0
