@@ -1,6 +1,5 @@
 """Module for verify test cases YAML-files."""
 import os
-import os.path
 import sys
 
 import click
