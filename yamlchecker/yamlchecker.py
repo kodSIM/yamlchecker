@@ -20,6 +20,7 @@ def yaml_checker(path):
     """Read all yaml files in the directory and verify structure.
 
     :param str path: Path to test cases.
+
     :return: Number of errors.
     :rtype: int
     """
@@ -71,6 +72,7 @@ def check_section(test_case, section, step=0, is_markdown=False):
     :param str section: Test case or step section name.
     :param int step: Number of step for Steps section.
     :param bool is_markdown: True, if it is necessary to check of markdown.
+
     :return: Number of errors.
     :rtype: int
     """
