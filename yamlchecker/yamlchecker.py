@@ -31,10 +31,7 @@ def yaml_checker(path):
     error_count = 0
     for file_name in file_list:
         print('=== Parsing {} ==='.format(file_name))
-        if os.path.isdir(path):
-            full_path = os.path.join(path, file_name)
-        else:
-            full_path = file_name
+        full_path = os.path.join(path, file_name) if os.path.isdir(path) else file_name
         with open(full_path) as file:
             text = file.read()
         conf = YamlLintConfig('document-start:\n'
