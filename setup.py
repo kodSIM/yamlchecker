@@ -17,7 +17,7 @@ setup(
     ''',
     url='',
     license='',
-    author='SEIlSm',
+    author='kodSIM',
     author_email='',
     description='Checker for YAML test cases files'
 )
