@@ -1,5 +1,4 @@
 """Module for verify test cases YAML-files."""
-import os
 from itertools import chain
 from pathlib import Path
 import sys
