@@ -6,3 +6,4 @@ venv
 .gitignore
 *.egg-info
 dist
+build
