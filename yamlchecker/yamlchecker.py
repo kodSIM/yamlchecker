@@ -59,12 +59,7 @@ def yaml_checker(path):
                     error_count += check_section(step, 'Expected result', step_count, is_markdown=True)
             else:
                 error_count += 1
-    if error_count:
-        print('='*30)
-        print('Test cases contains errors')
-    else:
-        print('='*30)
-        print('Test cases are OK')
+    print('\n\t{} errors were found'.format(error_count))
     return error_count
 
 
