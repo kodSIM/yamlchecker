@@ -49,7 +49,7 @@ def yaml_checker(path):
             test_case = yaml.load(text)
         except Exception:
             error_count += 1
-            print('{}: Error load YAML with PyYAML library')
+            print('{}: Error load YAML with PyYAML library'.format(file_name))
         else:
             error_count += check_section(test_case, 'Description', file_name, is_markdown=True)
             error_count += check_section(test_case, 'Requirements', file_name)
