@@ -4,12 +4,11 @@ python:
     - "3.5"
     - "3.6"
 install: pip install flake8
+script:
+    - echo "Running linting"
+    - flake8 --max-line-length=120 yamlchecker
 jods:
     include:
-        - stage: test
-          script:
-            - echo "Running linting"
-            - flake8 --max-line-length=120 yamlchecker
         - stage: deploy
           script: echo "Build package and upload to pypi.org"
           deploy:
