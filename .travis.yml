@@ -1,12 +1,13 @@
 language: python
+python:
+    - "3.4"
+    - "3.5"
+    - "3.6"
+install: pip install flake8
 jods:
     include:
         - stage: test
-        - python: "3.4"
-        - python: "3.5"
-        - python: "3.6"
-        - install: pip install flake8
-        - script: flake8 --max-line-length=120 yamlchecker
+          script: flake8 --max-line-length=120 yamlchecker
         - stage: deploy
           provider: pypi
           user: kodSIM
