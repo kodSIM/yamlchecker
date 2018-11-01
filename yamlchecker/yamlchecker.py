@@ -33,7 +33,7 @@ def yaml_checker(path):
         file_list = [path_for_check]
     error_count = 0
     for file_name in file_list:
-        with open(file_name) as file:
+        with open(str(file_name)) as file:
             text = file.read()
         conf = YamlLintConfig('document-start:\n'
                               '  present: false\n'
