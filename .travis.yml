@@ -7,9 +7,11 @@ install: pip install flake8
 jods:
     include:
         - stage: test
-          script: flake8 --max-line-length=120 yamlchecker
+          script:
+            - echo "Running linting"
+            - flake8 --max-line-length=120 yamlchecker
         - stage: deploy
-          script: skip
+          script: echo "Build package and upload to pypi.org"
           deploy:
               provider: pypi
               user: kodSIM
