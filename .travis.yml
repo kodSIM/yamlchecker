@@ -13,7 +13,6 @@ jobs:
           script: echo "Build package and upload to pypi.org"
           deploy:
               provider: pypi
-              python: "3.6"
               user: kodSIM
               password:
                   secure: Mo3hslM0L4ftNY0ilfORfzDtXP1G1a20hLlxvnwMTQJ/kFQdetv3dgDXk7MeVcVQc5aQMhZ4Az00ZIyHjRIaxT9vAw20aCJ0Tz9OuVvngRiyr5hVxJzc6f98/cRSNmNajKcbugxthYAXOzWVbuqPIox0vvsUODbw75UhATH10aSHgOzWesZMzCLA2/Bg0LPfX3uN047rGMrW1Xm4T7s3JCOe5BTmOlc90MR/pA0LTzbichNHX1fBEBOQlDfHMha5G2YLuj2gl/d6a5PZWrFOal1uvjFOfwHS5F10kPs7MdhtefTP12Rz1SOJaH73aC26QBIu2Niuy1JDANVmV3Q5UkEIyxjSK5GGLOBIub7OYEG6Y0Ob80eekNORwVFoZ/WecyzDtg+m3LzAd/qrFgckZU4dPIyASSA1MWj2nr+w1D2hnO3+ZfpjP9eA2cnbdIvxMh+uVVbw8cvDbsLb9W4JMie22R8t7rUDK5DBivV00ZSBxDqioBYpHIbpOyNFGC3Q0lqe951TQD+PcJCu4Sfi/+VhXZ/b0nmcw6lYzUItYPSMw9GESJYnyhjbggXl3TAtxrT+VY/QNlxh4GAez57vGvMYN6J694hgTK5oV6p8wjV3QwTfx+ufdTanEF2d5RBwVRqVX0h8f/hNoy5umurfjAaiWox/rov/t58uKA/bQ+4=
