@@ -78,16 +78,22 @@ def check_section(test_case, section, file, step=0, is_markdown=False):
     if step:
         msg_open = '{}: Error open "{}" section for step {}'
         msg_parse = '{}: Error parse "{}" section for step {}'
+        msg_empty = '{}: "{}" section for step {} is empty'
     else:
         msg_open = '{}: Error open "{}" section'
         msg_parse = '{}: Error parse "{}" section'
+        msg_empty = '{}: "{}" section is empty'
     try:
         text = test_case[section]
     except (KeyError, IndexError):
         print(msg_open.format(file, section, step))
         return 1
-    if is_markdown and not markdown.markdown(text):
-        print(msg_parse.format(file, section, step))
+    if text:
+        if is_markdown and not markdown.markdown(text):
+            print(msg_parse.format(file, section, step))
+            return 1
+    else:
+        print(msg_empty.format(file,section, step))
         return 1
     return 0
 
