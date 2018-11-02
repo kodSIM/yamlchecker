@@ -93,7 +93,7 @@ def check_section(test_case, section, file, step=0, is_markdown=False):
             print(msg_parse.format(file, section, step))
             return 1
     else:
-        print(msg_empty.format(file,section, step))
+        print(msg_empty.format(file, section, step))
         return 1
     return 0
 
