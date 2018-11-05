@@ -1,14 +1,22 @@
 language: python
-python:
-    - "3.4"
-    - "3.5"
-    - "3.6"
-install: pip install flake8
-script:
-    - echo "Running linting"
-    - flake8 --max-line-length=120 yamlchecker
 jobs:
     include:
+        - stage: test
+          python: "3.6"
+          install: pip install flake8
+          script:
+              - echo "Running linting"
+              - flake8 --max-line-length=120 yamlchecker
+        - stage: unittest
+          name: Unit Test
+          python:
+              - "3.4"
+              - "3.5"
+              - "3.6"
+          install: pip install -r requirements.txt
+          script:
+              - echo "Running unit tests"
+              - pytest -v
         - stage: deploy
           script: echo "Build package and upload to pypi.org"
           deploy:
