@@ -8,12 +8,13 @@ jobs:
               - echo "Running linting"
               - flake8 --max-line-length=120 yamlchecker
         - stage: unittest
-          name: Unit Test
           python:
               - "3.4"
               - "3.5"
               - "3.6"
-          install: pip install -r requirements.txt
+          install:
+              - pip install -r requirements.txt
+              - pip install -r .
           script:
               - echo "Running unit tests"
               - pytest -v
