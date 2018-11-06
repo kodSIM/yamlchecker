@@ -35,42 +35,42 @@ SECTION = {
 }
 
 
-def create_truth_file(tmp_path):
-    file = tmp_path / 'file.yaml'
-    file.write_text(TRUTH_YAML)
+def create_truth_file(tmpdir):
+    file = tmpdir.join('file.yaml')
+    file.write(TRUTH_YAML)
     return file
 
 
-def create_fail_file(tmp_path):
-    file = tmp_path / 'file.yaml'
-    file.write_text(FAIL_YAML)
+def create_fail_file(tmpdir):
+    file = tmpdir.join('file.yaml')
+    file.write(FAIL_YAML)
     return file
 
 
-def create_file_with_fail_sections(tmp_path):
-    file = tmp_path / 'file.yaml'
-    file.write_text(FAIL_SECTION)
+def create_file_with_fail_sections(tmpdir):
+    file = tmpdir.join('file.yaml')
+    file.write(FAIL_SECTION)
     return file
 
 
-def test_truth_file(tmp_path):
-    file = create_truth_file(tmp_path)
+def test_truth_file(tmpdir):
+    file = create_truth_file(tmpdir)
     assert yamlchecker.yaml_checker(file) == 0
 
 
-def test_fail_file(tmp_path):
-    file = create_fail_file(tmp_path)
+def test_fail_file(tmpdir):
+    file = create_fail_file(tmpdir)
     assert yamlchecker.yaml_checker(file) == 2
 
 
-def test_file_with_fail_sections(tmp_path):
-    file = create_file_with_fail_sections(tmp_path)
+def test_file_with_fail_sections(tmpdir):
+    file = create_file_with_fail_sections(tmpdir)
     assert yamlchecker.yaml_checker(file) == 2
 
 
-def test_truth_section(tmp_path):
-    assert yamlchecker.yamlchecker.check_section(SECTION, 'Description', tmp_path) == 0
+def test_truth_section(tmpdir):
+    assert yamlchecker.yamlchecker.check_section(SECTION, 'Description', tmpdir) == 0
 
 
-def test_fail_section(tmp_path):
-    assert yamlchecker.yamlchecker.check_section(SECTION, 'Steps', tmp_path) == 1
+def test_fail_section(tmpdir):
+    assert yamlchecker.yamlchecker.check_section(SECTION, 'Steps', tmpdir) == 1
