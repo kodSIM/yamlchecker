@@ -57,17 +57,17 @@ def create_file_with_fail_sections(tmpdir):
 
 def test_truth_file(tmpdir):
     file = create_truth_file(tmpdir)
-    assert yamlchecker.yaml_checker(Path(file)) == 0
+    assert yamlchecker.yaml_checker(Path(str(file))) == 0
 
 
 def test_fail_file(tmpdir):
     file = create_fail_file(tmpdir)
-    assert yamlchecker.yaml_checker(Path(file)) == 2
+    assert yamlchecker.yaml_checker(Path(str(file))) == 2
 
 
 def test_file_with_fail_sections(tmpdir):
     file = create_file_with_fail_sections(tmpdir)
-    assert yamlchecker.yaml_checker(Path(file)) == 2
+    assert yamlchecker.yaml_checker(Path(str(file))) == 2
 
 
 def test_truth_section(tmpdir):
