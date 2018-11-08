@@ -1,7 +1,7 @@
 # Script for check YAML test case files structure
 
 [![Check PEP8](https://travis-ci.org/kodSIM/yamlchecker.svg?branch=master)](https://travis-ci.org/kodSIM/yamlchecker)
-[![PyPI version](https://badge.fury.io/py/yamlchecker.svg)](https://badge.fury.io/py/yamlchecker)
+[![PyPI](https://img.shields.io/pypi/v/yamlchecker.svg)](https://pypi.org/project/yamlchecker/)
 
 ## Installation
 
