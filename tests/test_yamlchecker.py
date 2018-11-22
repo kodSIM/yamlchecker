@@ -12,7 +12,8 @@ FAIL_SECTION_FILE = 'fail_section.yaml'
 DIRECTORY = 'test_cases'
 
 TRUTH_YAML = """Description: description.
-Requirements: req_id
+Requirements:
+    - req_id
 Steps:
     -
         Description: step 1.
@@ -22,7 +23,8 @@ Steps:
 FAIL_YAML = """Description: |
 -
     description.
-Requirements: req_id
+Requirements:
+    - req_id
 Steps:
     -
         Description: step 1.
