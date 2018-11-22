@@ -52,8 +52,8 @@ def yaml_checker(path):
             print('{}: Error load YAML with PyYAML library'.format(file_name))
         else:
             error_count += check_section(test_case, 'Description', file_name, is_markdown=True)
-            error_count += check_section(test_case, 'Requirements', file_name)
-            if not check_section(test_case, 'Steps', file_name):
+            error_count += check_section(test_case, 'Requirements', file_name, section_type=list)
+            if not check_section(test_case, 'Steps', file_name, section_type=list):
                 for step_count, step in enumerate(test_case['Steps'], 1):
                     error_count += check_section(step, 'Description', file_name, step_count, is_markdown=True)
                     error_count += check_section(step, 'Expected result', file_name, step_count, is_markdown=True)
@@ -63,13 +63,14 @@ def yaml_checker(path):
     return error_count
 
 
-def check_section(test_case, section, file, step=0, is_markdown=False):
+def check_section(test_case, section, file, step=0, section_type=str, is_markdown=False):
     """Verify section.
 
     :param dict test_case: Test case or step of test case.
     :param str section: Test case or step section name.
     :param pathlib.Path file: Path to file.
     :param int step: Number of step for Steps section.
+    :param type section_type: Section type.
     :param bool is_markdown: True, if it is necessary to check of markdown.
 
     :return: Number of errors.
@@ -79,23 +80,30 @@ def check_section(test_case, section, file, step=0, is_markdown=False):
         msg_open = '{}: Error open "{}" section for step {}'
         msg_parse = '{}: Error parse "{}" section for step {}'
         msg_empty = '{}: "{}" section for step {} is empty'
+        msg_type = '{}: "{}" section for step {} must be type {}'
     else:
         msg_open = '{}: Error open "{}" section'
         msg_parse = '{}: Error parse "{}" section'
         msg_empty = '{}: "{}" section is empty'
+        msg_type = '{0}: "{1}" section must be type {3}'
     try:
         text = test_case[section]
     except (KeyError, IndexError):
         print(msg_open.format(file, section, step))
         return 1
+    error_count = 0
     if text:
-        if is_markdown and not markdown.markdown(text):
-            print(msg_parse.format(file, section, step))
-            return 1
+        if not isinstance(text, section_type):
+            print(msg_type.format(file, section, step, section_type))
+            error_count += 1
+        else:
+            if is_markdown and not markdown.markdown(text):
+                print(msg_parse.format(file, section, step))
+                error_count += 1
     else:
         print(msg_empty.format(file, section, step))
-        return 1
-    return 0
+        error_count += 1
+    return error_count
 
 
 if __name__ == '__main__':
